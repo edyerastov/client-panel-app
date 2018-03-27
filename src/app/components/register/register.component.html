@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-6 mx-auto">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="text-center mb-4 mt-4">
+          <span class="text-primary">
+            <i class="fa fa-lock"></i> Client Panel</span> Register
+        </h1>
+        <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" class="form-control" [(ngModel)]="email" [ngClass]="{'is-invalid': registerEmail.errors && registerEmail.touched}"
+                   pattern="^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$" #registerEmail="ngModel" required>
+            <div class="invalid-feedback" [hidden]="!registerEmail.errors?.required">
+              Email required
+            </div>
+            <div class="invalid-feedback" [hidden]="!registerEmail.errors?.pattern">
+              Must be example@example.com
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="form-control" [(ngModel)]="password" minlength="6" #registerPassword="ngModel"
+                   [ngClass]="{'is-invalid': registerPassword.errors && registerPassword.touched}" required>
+            <div class="invalid-feedback" [hidden]="!registerPassword.errors?.required">
+              Email required
+            </div>
+            <div class="invalid-feedback" [hidden]="!registerPassword.errors?.minlength">
+              Must be at least 6 characters
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
